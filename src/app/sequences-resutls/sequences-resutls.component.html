@@ -1,0 +1,38 @@
+<p>sequences-resutls works!</p>
+<p>The variant type of sequences!!</p>
+<div [ngSwitch]="variantType">
+    <div *ngSwitchCase="'ins'">insert variant sequence</div>
+    <div *ngSwitchCase="'del'">deletion variant sequence</div>
+    <div *ngSwitchCase="'sv'">structural variant sequence</div>
+    <div *ngSwitchCase="'SNP'">SNP variant sequence</div>
+    <div *ngSwitchDefault>All variants</div>
+</div>
+
+<div *ngIf="showSeqs;  then seqsFiltered; else noSeqsAtAll"></div>
+<ng-template #seqsFiltered>
+    <p>Sequences filtered by conditions above!</p>
+</ng-template>
+<ng-template #noSeqsAtAll>There is no Seqs satisfied by conditions above!</ng-template>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>sequence</th>
+            <th>variant type</th>
+            <th>index</th>
+            <th>first</th>
+            <th>last</th>
+            <th>even</th>
+            <th>odd</th>
+        </tr>
+        <tr *ngFor="let seq of seqSet; index as i, first as f; last as l; even as e; odd as o">
+            <td [ngStyle]="{'color': seqColor}">{{ seq.seq }}</td>
+            <td [ngStyle]="{'color': vTypeColor}">{{ seq.variantType }}</td>
+            <td>{{ i }}</td>
+            <td>{{ f }}</td>
+            <td>{{ l }}</td>
+            <td>{{ e }}</td>
+            <td>{{ o }}</td>
+        </tr>
+    </table>
+</div>

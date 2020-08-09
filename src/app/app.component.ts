@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-spa';
+
+  retrievingSequences(){
+    console.log('retrieving sequences button works')
+  }
 }
