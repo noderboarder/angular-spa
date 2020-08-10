@@ -1,0 +1,50 @@
+<p>sequences-results works!</p>
+<p>The variant type of sequences!!</p>
+<div [ngSwitch]="variantType">
+    <div *ngSwitchCase="'ins'">insert variant sequence</div>
+    <div *ngSwitchCase="'del'">deletion variant sequence</div>
+    <div *ngSwitchCase="'sv'">structural variant sequence</div>
+    <div *ngSwitchCase="'SNP'">SNP variant sequence</div>
+    <div *ngSwitchDefault>All variants</div>
+</div>
+
+<div *ngIf="showSeqs;  then seqsFiltered; else noSeqsAtAll"></div>
+<ng-template #seqsFiltered>
+    <p [innerHTML]="seqComponentTitle"></p>
+</ng-template>
+<ng-template #noSeqsAtAll>There is no Seqs satisfied by conditions above!</ng-template>
+
+<div>
+    <table class="table">
+        <tr [ngClass]="[resultHeader, resultHeaderBackground]">
+            <th>sequence</th>
+            <th>variant type</th>
+            <th>rs ID</th>
+            <th>start</th>
+            <th>end</th>
+            <th>param for ensembl</th>
+<!--            <th>index</th>-->
+<!--            <th>first</th>-->
+<!--            <th>last</th>-->
+<!--            <th>even</th>-->
+<!--            <th>odd</th>-->
+            <th>JSON Format</th>
+            <th>Date to retrieve</th>
+        </tr>
+        <tr *ngFor="let seq of seqSet; index as i, first as f; last as l; even as e; odd as o" [ngClass]="{'resultBackground': true, 'resultHeaderBackground': false}">
+            <td [ngStyle]="{'color': seqColor}">{{ seq.seq | lowercase }}</td>
+            <td [ngStyle]="{'color': vTypeColor}">{{ seq.variantType }}</td>
+            <td>{{ seq.rsId }}</td>
+            <td>{{ seq.spos }}</td>
+            <td>{{ seq.epos }}</td>
+            <td>{{ seq.param | parameter4Ensembl: seq.spos: seq.epos }}</td>
+<!--            <td>{{ i }}</td>-->
+<!--            <td>{{ f }}</td>-->
+<!--            <td>{{ l }}</td>-->
+<!--            <td>{{ e }}</td>-->
+<!--            <td>{{ o }}</td>-->
+            <td>{{ seq | json }}</td>
+            <td>{{ today | date:'MMM dd yyyy data' | lowercase}}</td>
+        </tr>
+    </table>
+</div>

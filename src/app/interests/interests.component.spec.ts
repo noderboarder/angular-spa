@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MaskoptionComponent } from './maskoption.component';
+import { InterestsComponent } from './interests.component';
 
-describe('MaskoptionComponent', () => {
-  let component: MaskoptionComponent;
-  let fixture: ComponentFixture<MaskoptionComponent>;
+describe('InterestsComponent', () => {
+  let component: InterestsComponent;
+  let fixture: ComponentFixture<InterestsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MaskoptionComponent ]
+      declarations: [ InterestsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MaskoptionComponent);
+    fixture = TestBed.createComponent(InterestsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

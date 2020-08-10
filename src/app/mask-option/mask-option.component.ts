@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-maskoption',
-  templateUrl: './maskoption.component.html',
-  styleUrls: ['./maskoption.component.scss']
+  templateUrl: './mask-option.component.html',
+  styleUrls: ['./mask-option.component.scss']
 })
-export class MaskoptionComponent implements OnInit {
+export class MaskOptionComponent implements OnInit {
 
   constructor() { }
 
