@@ -13,10 +13,13 @@ import {ParallelandConcurrencyComponent} from './paralleland-concurrency/paralle
 import {MessageComponent} from './message/message.component';
 import {MachinelearningComponent} from './machinelearning/machinelearning.component';
 import {VisualizationComponent} from './visualization/visualization.component';
+import {AdminHomeComponent} from './admin-home/admin-home.component';
+import {AdminGuardGuard} from './admin-guard.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
+  {path: 'admin', component: AdminHomeComponent, canActivate: [AdminGuardGuard]},
   {path: 'about', component: AboutComponent},
   {path: 'research', component: ResearchComponent},
   {path: 'work', component: WorkComponent},

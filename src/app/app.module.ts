@@ -25,6 +25,10 @@ import { BoardComponent } from './board/board.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ParallelandConcurrencyComponent } from './paralleland-concurrency/paralleland-concurrency.component';
 import { MessageComponent } from './message/message.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule} from '@angular/material/button';
+import { MatCardModule} from '@angular/material/card';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -47,13 +51,17 @@ import { MessageComponent } from './message/message.component';
     BoardComponent,
     PagenotfoundComponent,
     ParallelandConcurrencyComponent,
-    MessageComponent
+    MessageComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     EnsemblModule,
-    UcscModule
+    UcscModule,
+    MatButtonModule,
+    MatCardModule,
+    BrowserAnimationsModule
   ],
   providers: [
     // {provide: LocationStrategy, useClass: HashLocationStrategy}
