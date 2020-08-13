@@ -1,0 +1,28 @@
+<h2>signin works!</h2>
+<div class="container">
+  <form #signInForm="ngForm" (ngSubmit)="userInfo(signInForm)">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="exampleInputEmail1" ngModel required>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="exampleInputPassword1" ngModel required>
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" name="exampleCheck1" ngModel>
+      <label class="form-check-label" for="exampleCheck1">Remember me for 7 days</label>
+    </div>
+    <div class="form-group form-check">
+      <input type="radio" class="form-check-input" value="male" id="maleField" name="sexField" ngModel required>
+      <label class="form-check-label" for="exampleCheck1">Male</label>
+      <span class="form-text text-muted" *ngIf="sexField.touched && !sexField.valid>please choose your gender</span>
+    </div>
+    <div class="form-group form-check">
+      <input type="radio" class="form-check-input" value="female" id="femailField" name="sexField" ngModel required>
+      <label class="form-check-label" for="exampleCheck1">Female</label>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!signInForm.valid">Submit</button>
+  </form>
+</div>

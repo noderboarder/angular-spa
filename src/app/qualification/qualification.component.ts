@@ -8,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class QualificationComponent implements OnInit {
 
   constructor() { }
+  // tslint:disable-next-line:typedef
+  formatLabel(value: number) {
+    return value;
+  }
 
   ngOnInit(): void {
   }

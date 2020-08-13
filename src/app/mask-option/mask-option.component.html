@@ -1,10 +1,12 @@
 <p>maskoption works!</p>
-<p>Select mask option:</p>
 <div>
-    <input type="radio" id="none" name="none" value="1" checked>
-    <label for="none">None</label><br>
-    <input type="radio" id="hard" name="hard" value="hard">
-    <label for="hard">Hard</label><br>
-    <input type="radio" id="soft" name="soft" value="soft">
-    <label for="soft">Soft</label>
+  <div>
+    <mat-slide-toggle>Select mask option:</mat-slide-toggle><br>
+  </div>
+  <div>
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button value="soft">Soft</mat-radio-button>
+      <mat-radio-button value="hard">Hard</mat-radio-button>
+    </mat-radio-group><br>
+  </div>
 </div>

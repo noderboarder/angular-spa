@@ -15,9 +15,11 @@ import {MachinelearningComponent} from './machinelearning/machinelearning.compon
 import {VisualizationComponent} from './visualization/visualization.component';
 import {AdminHomeComponent} from './admin-home/admin-home.component';
 import {AdminGuardGuard} from './admin-guard.guard';
+import {SigninComponent} from './signin/signin.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'signin', component: SigninComponent},
   {path: 'home', component: HomeComponent},
   {path: 'admin', component: AdminHomeComponent, canActivate: [AdminGuardGuard]},
   {path: 'about', component: AboutComponent},

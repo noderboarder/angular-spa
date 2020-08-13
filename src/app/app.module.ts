@@ -28,7 +28,12 @@ import { MessageComponent } from './message/message.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule} from '@angular/material/button';
 import { MatCardModule} from '@angular/material/card';
+import { MatSliderModule } from '@angular/material/slider';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { SigninComponent } from './signin/signin.component';
+import { FormsModule} from '@angular/forms';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'; // first to do: import module
 
 @NgModule({
   declarations: [
@@ -52,7 +57,8 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
     PagenotfoundComponent,
     ParallelandConcurrencyComponent,
     MessageComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,11 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
     UcscModule,
     MatButtonModule,
     MatCardModule,
-    BrowserAnimationsModule
+    FormsModule,
+    MatSliderModule,
+    BrowserAnimationsModule,
+    MatRadioModule,
+    MatSlideToggleModule
   ],
   providers: [
     // {provide: LocationStrategy, useClass: HashLocationStrategy}
