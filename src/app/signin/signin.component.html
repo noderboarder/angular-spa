@@ -3,26 +3,32 @@
   <form #signInForm="ngForm" (ngSubmit)="userInfo(signInForm)">
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="exampleInputEmail1" ngModel required>
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <!-- email: email 형식, required: 필수 -->
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="exampleInputEmail1" ngModel email required #exampleInputEmail1="ngModel"> <!-- template 'name' binding needed with ngModel-->
+      <small class="form-text text-muted" *ngIf="exampleInputEmail1.touched && !exampleInputEmail1.valid">Email is mandatory.</small>
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" name="exampleInputPassword1" ngModel required>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="exampleInputPassword1" ngModel required #exampleInputPassword1="ngModel">
+      <small class="form-text text-muted" *ngIf="exampleInputPassword1.touched && !exampleInputPassword1.valid">Password is mandatory.</small>
     </div>
     <div class="form-group form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1" name="exampleCheck1" ngModel>
       <label class="form-check-label" for="exampleCheck1">Remember me for 7 days</label>
     </div>
     <div class="form-group form-check">
-      <input type="radio" class="form-check-input" value="male" id="maleField" name="sexField" ngModel required>
+      <input type="radio" class="form-check-input" value="male" id="maleField" name="sexField" ngModel>
       <label class="form-check-label" for="exampleCheck1">Male</label>
-      <span class="form-text text-muted" *ngIf="sexField.touched && !sexField.valid>please choose your gender</span>
     </div>
     <div class="form-group form-check">
-      <input type="radio" class="form-check-input" value="female" id="femailField" name="sexField" ngModel required>
+      <input type="radio" class="form-check-input" value="female" id="femailField" name="sexField" ngModel>
       <label class="form-check-label" for="exampleCheck1">Female</label>
     </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Note</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+<!--    adding disable the submit button-->
     <button type="submit" class="btn btn-primary" [disabled]="!signInForm.valid">Submit</button>
   </form>
 </div>

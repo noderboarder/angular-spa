@@ -32,8 +32,11 @@ import { MatSliderModule } from '@angular/material/slider';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { SigninComponent } from './signin/signin.component';
 import { FormsModule} from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle'; // first to do: import module
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { ParamsforseqsComponent } from './paramsforseqs/paramsforseqs.component';
+import { NavigationComponent } from './navigation/navigation.component'; // first to do: import module
 
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle'; // first to
     ParallelandConcurrencyComponent,
     MessageComponent,
     AdminHomeComponent,
-    SigninComponent
+    SigninComponent,
+    ParamsforseqsComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +76,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle'; // first to
     MatSliderModule,
     BrowserAnimationsModule,
     MatRadioModule,
+    ReactiveFormsModule,
     MatSlideToggleModule
   ],
   providers: [

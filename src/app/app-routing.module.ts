@@ -16,6 +16,7 @@ import {VisualizationComponent} from './visualization/visualization.component';
 import {AdminHomeComponent} from './admin-home/admin-home.component';
 import {AdminGuardGuard} from './admin-guard.guard';
 import {SigninComponent} from './signin/signin.component';
+import {ParamsforseqsComponent} from './paramsforseqs/paramsforseqs.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'research', component: ResearchComponent},
   {path: 'work', component: WorkComponent},
+  {path: 'params', component: ParamsforseqsComponent},
   {path: 'interests', component: InterestsComponent},
   {path: 'interests',
     children: [

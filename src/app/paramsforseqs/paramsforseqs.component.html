@@ -1,0 +1,23 @@
+<div class="container">
+  <p>Testing Parameters using reactive forms</p>
+  <form [formGroup]="seqqueryparameters" (ngSubmit)="postParamsForSeq();">
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="maskOption" formControlName="maskOptionYn">
+      <label class="custom-control-label" for="maskOption">Repeat Mask Option</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="maskHard" name="maskOption" class="custom-control-input" value="hard" formControlName="maskOption">
+      <label class="custom-control-label" for="maskHard">Hard</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <!-- radio는 name과 formControlName이 같아야한다. -->
+      <input type="radio" id="maskSoft" name="maskOption" class="custom-control-input" value="soft" formControlName="maskOption">
+      <label class="custom-control-label" for="maskSoft">Soft</label>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Get Sequences</button>
+      </div>
+    </div>
+  </form>
+</div>
