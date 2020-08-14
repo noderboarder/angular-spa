@@ -1,6 +1,16 @@
 <div class="container">
   <p>Testing Parameters using reactive forms</p>
-  <form [formGroup]="seqqueryparameters" (ngSubmit)="postParamsForSeq();">
+  <form [formGroup]="seqqueryparametersForm" (ngSubmit)="postParamsForSeq();"> <!-- template driven이면 파람들 보내야한다 -->
+    <div class="form-group">
+      <label for="startingPosition">starting position</label>
+      <input type="number" class="form-control" id="startingPosition" name="startingPosition" formControlName="startingPosition"> <!-- template 'name' binding needed with ngModel-->
+      <span *ngIf="seqqueryparametersForm.get('startingPosition').touched && seqqueryparametersForm.get('startingPosition').hasError('required')">You cannot get sequence without starting position(number only)</span>
+    </div>
+    <div class="form-group">
+      <label for="endingPosition">ending position</label>
+      <input type="number" class="form-control" id="endingPosition" name="endingPosition" formControlName="endingPosition">
+      <span *ngIf="seqqueryparametersForm.get('endingPosition').touched && seqqueryparametersForm.get('endingPosition').hasError('required')">You cannot get sequence without ending position(number only)</span>
+    </div>
     <div class="custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="maskOption" formControlName="maskOptionYn">
       <label class="custom-control-label" for="maskOption">Repeat Mask Option</label>
@@ -16,7 +26,8 @@
     </div>
     <div class="form-group row">
       <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary">Get Sequences</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!seqqueryparametersForm.valid">Get Sequences</button>
+        <button type="submit" class="btn btn-link" (click)="resetForm()">Reset</button>
       </div>
     </div>
   </form>
