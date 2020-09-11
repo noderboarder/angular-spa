@@ -9,8 +9,14 @@ import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 export class ParamsforseqsComponent implements OnInit {
 
   seqqueryparametersForm: FormGroup; // step 3: html의 formgroup name과 동일해야한다.
+  siteName = 'ensembl';
+  startingPosCoord = 0;
+  endingPosCoord = 0;
+  spacing = 1000;
+  threshold = 100;
+  variants;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder){
     /*
       // formBuilder는 form을 빌드하는 역할정도 한다.
       this.seqqueryparameters = formBuilder.group(
@@ -24,29 +30,95 @@ export class ParamsforseqsComponent implements OnInit {
      */
     // showing message
     this.seqqueryparametersForm = formBuilder.group({
+        siteName: ['', [Validators.required,
+                        Validators.minLength(10),
+                        Validators.minLength(5)]],
         startingPosition: ['', Validators.required], // TODO min, bigger than 0, two number comparing validation
         endingPosition: ['', Validators.required], // TODO min, bigger than 0, two number comparing validation
         maskOptionYn: ['', Validators.requiredTrue], // 각각은 elements이며 html의 formControlName에 있는 이름과 같아야함
-        maskOption: ['', Validators.required]
+        maskOption: ['', Validators.required],
+        spacing: ['', Validators.required],
+        threshold: ['', Validators.required],
+      // 실험1 : 보통은 이렇게 사용한다. array - group - control 여러개
+      // group안에 또 formbuilder를 넣어서 거기에 array로 또 만든다.(array는 단지, control과 group의 묶음이다)
+      variants: this.formBuilder.array([
+        this.formBuilder.group({
+          variantId: ['1_345345_A_AT'],
+          variantType: ['INS'],
+          variantRegion: ['intergenic'],
+          variantDescription: ['test variant'],
+          variantCheck: ['', Validators.requiredTrue]
+        })
+      ])
+      // 실험2
+      //   variants: this.formBuilder.array([
+      //     // 단순 formControl로 이루어진 array : 보통은 드물다. (이거 화면에서 for문 돌리면 됨)
+      //     new FormControl('variantId'),
+      //     new FormControl('variantType'),
+      //     new FormControl('variantRegion')
+      //   ])
       }
     );
   }
 
   // tslint:disable-next-line:typedef
   defaultSet(){
-    // this.seqqueryparametersForm.setValue({
-    this.seqqueryparametersForm.patchValue({ // TODO de-activate by setting checkbox
+    this.seqqueryparametersForm.setValue({
+    // this.seqqueryparametersForm.patchValue({ // TODO de-activate by setting checkbox
+      siteName: 'ensembl',
       startingPosition: 0,
-      endingPosition: 0
+      endingPosition: 0,
+      spacing: 1000,
+      threshold: 100,
+      variantType: 'intergenic'
       // maskOptionYn: true,
       // maskOption: 'hard'
     });
   }
 
   ngOnInit(): void {
-    this.defaultSet();
-  }
+    // valueChnages: keyup triggered
+    this.seqqueryparametersForm.get('siteName').valueChanges.subscribe(data => {
+      console.log(data);
+      this.siteName = data;
+    });
+    this.seqqueryparametersForm.get('startingPosition').valueChanges.subscribe(data => {
+      console.log(data);
+      this.startingPosCoord = data;
+    });
+    this.seqqueryparametersForm.get('endingPosition').valueChanges.subscribe(data => {
+      this.endingPosCoord = data;
+    });
+    this.seqqueryparametersForm.get('spacing').valueChanges.subscribe(data => {
+      this.spacing = data;
+    });
+    this.seqqueryparametersForm.get('threshold').valueChanges.subscribe(data => {
+      this.threshold = data;
+    });
+    this.seqqueryparametersForm.valueChanges.subscribe(data => {
+      console.log(data);
+    });
 
+    // statusChanges: 동적으로 validation의 상태를 체크 => disable submit button
+    this.seqqueryparametersForm.get('siteName').statusChanges.subscribe(data => {
+      console.log(data);
+    });
+    this.seqqueryparametersForm.get('startingPosition').statusChanges.subscribe(data => {
+      console.log(data);
+    });
+    this.seqqueryparametersForm.get('endingPosition').statusChanges.subscribe(data => {
+      console.log(data);
+    });
+    this.seqqueryparametersForm.get('spacing').statusChanges.subscribe(data => {
+      console.log(data);
+    });
+    this.seqqueryparametersForm.get('threshold').statusChanges.subscribe(data => {
+      console.log(data);
+    });
+    this.seqqueryparametersForm.statusChanges.subscribe(data => {
+      console.log(data);
+    });
+  }
   // tslint:disable-next-line:typedef
   postParamsForSeq() {
     // test
@@ -54,9 +126,12 @@ export class ParamsforseqsComponent implements OnInit {
     // getting the entire values
     console.log(this.seqqueryparametersForm.value);
     // getting individual values
+    console.log(this.seqqueryparametersForm.value.siteName);
     console.log(this.seqqueryparametersForm.value.startingPosition);
     console.log(this.seqqueryparametersForm.value.endingPosition);
     console.log(this.seqqueryparametersForm.value.maskOptionYn);
+    console.log(this.seqqueryparametersForm.value.spacing);
+    console.log(this.seqqueryparametersForm.value.threshold);
 
     this.resetForm();
     this.seqqueryparametersForm.patchValue({ // TODO de-activate by setting checkbox
@@ -65,8 +140,16 @@ export class ParamsforseqsComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  resetForm() {
+  resetForm(){
     this.seqqueryparametersForm.reset();
     this.defaultSet();
   }
+  // dynamic inputbox
+  // addVariantType(){
+  //
+  //
+  // }
+  // removeVariant(i){
+  //
+  // }
 }

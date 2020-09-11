@@ -2,6 +2,11 @@
   <p>Testing Parameters using reactive forms</p>
   <form [formGroup]="seqqueryparametersForm" (ngSubmit)="postParamsForSeq();"> <!-- template driven이면 파람들 보내야한다 -->
     <div class="form-group">
+      <label for="siteName">site name</label>
+      <input type="text" class="form-control" id="siteName" name="siteName" formControlName="siteName"> <!-- template 'name' binding needed with ngModel-->
+      <span *ngIf="seqqueryparametersForm.get('siteName').touched && seqqueryparametersForm.get('siteName').hasError('required')">You cannot get sequence without site name</span>
+    </div>
+    <div class="form-group">
       <label for="startingPosition">starting position</label>
       <input type="number" class="form-control" id="startingPosition" name="startingPosition" formControlName="startingPosition"> <!-- template 'name' binding needed with ngModel-->
       <span *ngIf="seqqueryparametersForm.get('startingPosition').touched && seqqueryparametersForm.get('startingPosition').hasError('required')">You cannot get sequence without starting position(number only)</span>
@@ -11,6 +16,17 @@
       <input type="number" class="form-control" id="endingPosition" name="endingPosition" formControlName="endingPosition">
       <span *ngIf="seqqueryparametersForm.get('endingPosition').touched && seqqueryparametersForm.get('endingPosition').hasError('required')">You cannot get sequence without ending position(number only)</span>
     </div>
+    <div class="form-group">
+      <label for="spacing">spacing</label>
+      <input type="number" class="form-control" id="spacing" name="spacing" formControlName="spacing">
+      <span *ngIf="seqqueryparametersForm.get('spacing').touched && seqqueryparametersForm.get('spacing').hasError('required')">You need to choose spacing(number only)</span>
+    </div>
+    <div class="form-group">
+      <label for="endingPosition">threshold</label>
+      <input type="number" class="form-control" id="threshold" name="threshold" formControlName="threshold">
+      <span *ngIf="seqqueryparametersForm.get('threshold').touched && seqqueryparametersForm.get('threshold').hasError('required')">You cannot get sequence without threshold(number only)</span>
+    </div>
+<!--    <button type="submit" class="btn btn-primary" (click)="addVariantType()">Add Variant Type</button>-->
     <div class="custom-control custom-checkbox">
       <input type="checkbox" class="custom-control-input" id="maskOption" formControlName="maskOptionYn">
       <label class="custom-control-label" for="maskOption">Repeat Mask Option</label>
@@ -24,6 +40,32 @@
       <input type="radio" id="maskSoft" name="maskOption" class="custom-control-input" value="soft" formControlName="maskOption">
       <label class="custom-control-label" for="maskSoft">Soft</label>
     </div>
+    <!--실험1-->
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">variants</label>
+        <!--      formArrayName하고 동일한것을 써야한다. variants-->
+      <div class="col-sm-10" formArrayName="variants">
+        <!--        여기 array에서는 control을 사용했다. group을 쓸수도 있음: formname.controls.array이름-->
+        <div *ngFor="let variant of seqqueryparametersForm.controls.variants['controls']; let i = index" [formGroupName]="i">
+        <!--          <a [routerLink] (click)="removeVariant(i)">remove</a>-->
+          <input class="form-control" type="text" formControlName="variantId" id="variant{{i}}">
+          <input class="form-control" type="text" formControlName="variantType" id="variant{{i}}">
+          <input class="form-control" type="text" formControlName="variantRegion" id="variant{{i}}">
+          <input class="form-control" type="text" formControlName="variantDescription" id="variant{{i}}">
+          <input type="checkbox" formControlName="variantCheck"> Mark as Check
+        </div>
+      </div>
+    </div>
+    <!-- 실험2 -->
+<!--    <div class="form-group row">-->
+<!--      <label class="col-sm-2 col-form-label">variants</label>-->
+<!--      <div class="col-sm-10" formArrayName="variants">-->
+<!--        <div *ngFor="let variant of seqqueryparametersForm.controls.variants['controls']; let i = index">-->
+<!--          <input class="form-control" type="text" [formControlName]="i" id="variant{{i}}">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+    <!-- 실험2 -->
     <div class="form-group row">
       <div class="col-sm-10">
         <button type="submit" class="btn btn-primary" [disabled]="!seqqueryparametersForm.valid">Get Sequences</button>
@@ -31,4 +73,8 @@
       </div>
     </div>
   </form>
+</div>
+
+<div>
+  Retrieving sequences coordination: {{ startingPosCoord }} - {{ endingPosCoord }}
 </div>
