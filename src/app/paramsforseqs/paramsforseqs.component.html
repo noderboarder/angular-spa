@@ -47,7 +47,7 @@
       <div class="col-sm-10" formArrayName="variants">
         <!--        여기 array에서는 control을 사용했다. group을 쓸수도 있음: formname.controls.array이름-->
         <div *ngFor="let variant of seqqueryparametersForm.controls.variants['controls']; let i = index" [formGroupName]="i">
-        <!--          <a [routerLink] (click)="removeVariant(i)">remove</a>-->
+          <a [routerLink] (click)="removeVariant(i)">Remove Variant</a>
           <input class="form-control" type="text" formControlName="variantId" id="variant{{i}}">
           <input class="form-control" type="text" formControlName="variantType" id="variant{{i}}">
           <input class="form-control" type="text" formControlName="variantRegion" id="variant{{i}}">
@@ -70,6 +70,7 @@
       <div class="col-sm-10">
         <button type="submit" class="btn btn-primary" [disabled]="!seqqueryparametersForm.valid">Get Sequences</button>
         <button type="submit" class="btn btn-link" (click)="resetForm()">Reset</button>
+        <button type="submit" class="btn btn-link" (click)="addNewVariant()">New Variant</button>
       </div>
     </div>
   </form>

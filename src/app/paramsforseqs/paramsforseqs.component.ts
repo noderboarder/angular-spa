@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormControl, FormBuilder, Validators, FormArray} from '@angular/forms';
 
 @Component({
   selector: 'app-paramsforseqs',
@@ -49,6 +49,14 @@ export class ParamsforseqsComponent implements OnInit {
           variantDescription: ['test variant'],
           variantCheck: ['', Validators.requiredTrue]
         })
+        // 보통은 이렇게 multiple group으로 in array에 생성
+        // ,this.formBuilder.group({
+        //   geneId: ['1_345345_A_AT'],
+        //   geneType: ['INS'],
+        //   geneRegion: ['intergenic'],
+        //   geneDescription: ['test variant'],
+        //   geneCheck: ['', Validators.requiredTrue]
+        // })
       ])
       // 실험2
       //   variants: this.formBuilder.array([
@@ -70,13 +78,32 @@ export class ParamsforseqsComponent implements OnInit {
       endingPosition: 0,
       spacing: 1000,
       threshold: 100,
-      variantType: 'intergenic'
-      // maskOptionYn: true,
+      variantType: 'intergenic',
+      maskOptionYn: true,
       // maskOption: 'hard'
     });
   }
 
   ngOnInit(): void {
+
+    // nested array 접근 (값, 길이, 세부항목)
+    console.log(this.seqqueryparametersForm.get('variants').value);
+    console.log(this.seqqueryparametersForm.get('variants').value.length);
+    console.log(this.seqqueryparametersForm.get('variants').value[0].variantDescription);
+    // 초기화 [] 배열 표기 주의하기
+    this.seqqueryparametersForm.get('variants').setValue([{
+      variantCheck: false,
+      variantDescription: ['test description'],
+      variantId: ['1_345345_A_AT'],
+      variantRegion: ['non-intergenic'],
+      variantType: ['snp']
+    }]);
+
+    // 전체 reset
+    // this.seqqueryparametersForm.reset();
+    // array만 reset
+    // this.seqqueryparametersForm.get('variants').reset();
+
     // valueChnages: keyup triggered
     this.seqqueryparametersForm.get('siteName').valueChanges.subscribe(data => {
       console.log(data);
@@ -144,12 +171,28 @@ export class ParamsforseqsComponent implements OnInit {
     this.seqqueryparametersForm.reset();
     this.defaultSet();
   }
+
+  get variants(){
+    return this.seqqueryparametersForm.get('variants') as FormArray;
+  }
   // dynamic inputbox
-  // addVariantType(){
-  //
-  //
-  // }
-  // removeVariant(i){
-  //
-  // }
+  addNewVariant(){
+    const variantLength = this.seqqueryparametersForm.get('variants').value.length;
+
+    console.log('::::::::::' + variantLength);
+    // 먼저 위 get variants에서 form array값을 가져온다.
+    const newVariant = this.formBuilder.group({
+      variantId: [variantLength + 1],
+      variantType: [''],
+      variantRegion: [''],
+      variantDescription: [''],
+      variantCheck: ['', Validators.requiredTrue]
+    });
+
+    this.variants.push(newVariant);
+  }
+  removeVariant(variantId){
+    console.log('clicked!!!!!!!!!!!!!!!!!!!!' + variantId);
+    this.variants.removeAt(variantId);
+  }
 }
