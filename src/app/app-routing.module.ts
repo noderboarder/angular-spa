@@ -17,11 +17,13 @@ import {AdminHomeComponent} from './admin-home/admin-home.component';
 import {AdminGuardGuard} from './admin-guard.guard';
 import {SigninComponent} from './signin/signin.component';
 import {ParamsforseqsComponent} from './paramsforseqs/paramsforseqs.component';
+import {ObservableComponent} from './observable/observable.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'signin', component: SigninComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'observable', component: ObservableComponent},
   {path: 'admin', component: AdminHomeComponent, canActivate: [AdminGuardGuard]},
   {path: 'about', component: AboutComponent},
   {path: 'research', component: ResearchComponent},

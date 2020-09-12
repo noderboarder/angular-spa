@@ -36,7 +36,8 @@ import { ReactiveFormsModule} from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ParamsforseqsComponent } from './paramsforseqs/paramsforseqs.component';
-import { NavigationComponent } from './navigation/navigation.component'; // first to do: import module
+import { NavigationComponent } from './navigation/navigation.component';
+import { ObservableComponent } from './observable/observable.component'; // first to do: import module
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { NavigationComponent } from './navigation/navigation.component'; // firs
     AdminHomeComponent,
     SigninComponent,
     ParamsforseqsComponent,
-    NavigationComponent
+    NavigationComponent,
+    ObservableComponent
   ],
   imports: [
     BrowserModule,

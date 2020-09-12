@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, FormBuilder, Validators, FormArray} from '@angular/forms';
+import {SequencesService} from '../sequences.service';
 
 @Component({
   selector: 'app-paramsforseqs',
@@ -8,15 +9,17 @@ import {FormGroup, FormControl, FormBuilder, Validators, FormArray} from '@angul
 })
 export class ParamsforseqsComponent implements OnInit {
 
+  sequenceList = [];
+
   seqqueryparametersForm: FormGroup; // step 3: html의 formgroup name과 동일해야한다.
   siteName = 'ensembl';
   startingPosCoord = 0;
   endingPosCoord = 0;
   spacing = 1000;
   threshold = 100;
-  variants;
+  // variants;
 
-  constructor(private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder, public sequencesService: SequencesService){
     /*
       // formBuilder는 form을 빌드하는 역할정도 한다.
       this.seqqueryparameters = formBuilder.group(
@@ -85,6 +88,8 @@ export class ParamsforseqsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.sequenceList = this.sequencesService.getSequences();
 
     // nested array 접근 (값, 길이, 세부항목)
     console.log(this.seqqueryparametersForm.get('variants').value);
@@ -172,27 +177,27 @@ export class ParamsforseqsComponent implements OnInit {
     this.defaultSet();
   }
 
-  get variants(){
-    return this.seqqueryparametersForm.get('variants') as FormArray;
-  }
-  // dynamic inputbox
-  addNewVariant(){
-    const variantLength = this.seqqueryparametersForm.get('variants').value.length;
-
-    console.log('::::::::::' + variantLength);
-    // 먼저 위 get variants에서 form array값을 가져온다.
-    const newVariant = this.formBuilder.group({
-      variantId: [variantLength + 1],
-      variantType: [''],
-      variantRegion: [''],
-      variantDescription: [''],
-      variantCheck: ['', Validators.requiredTrue]
-    });
-
-    this.variants.push(newVariant);
-  }
-  removeVariant(variantId){
-    console.log('clicked!!!!!!!!!!!!!!!!!!!!' + variantId);
-    this.variants.removeAt(variantId);
-  }
+  // get variants(){
+  //   return this.seqqueryparametersForm.get('variants') as FormArray;
+  // }
+  // // dynamic inputbox
+  // addNewVariant(){
+  //   const variantLength = this.seqqueryparametersForm.get('variants').value.length;
+  //
+  //   console.log('::::::::::' + variantLength);
+  //   // 먼저 위 get variants에서 form array값을 가져온다.
+  //   const newVariant = this.formBuilder.group({
+  //     variantId: [variantLength + 1],
+  //     variantType: [''],
+  //     variantRegion: [''],
+  //     variantDescription: [''],
+  //     variantCheck: ['', Validators.requiredTrue]
+  //   });
+  //
+  //   this.variants.push(newVariant);
+  // }
+  // removeVariant(variantId){
+  //   console.log('clicked!!!!!!!!!!!!!!!!!!!!' + variantId);
+  //   this.variants.removeAt(variantId);
+  // }
 }

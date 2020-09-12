@@ -10,6 +10,7 @@ export class WorkComponent implements OnInit {
 
   constructor() { }
 
+  // tslint:disable-next-line:typedef
   retrievingSequences(){
     console.log('retrieving sequences button works');
     alert('under construction. But I promise it will come soon!!');
