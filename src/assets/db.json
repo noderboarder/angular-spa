@@ -1,0 +1,40 @@
+{
+  "variants": [
+    {
+      "variantId": "3_345345_A_AT",
+      "variantType": "ins",
+      "variantRegion": "intergenic",
+      "variantDescription": "test 1 variant"
+    },
+    {
+      "variantId": "1_34769_A_T",
+      "variantType": "snp",
+      "variantRegion": "intergenic",
+      "variantDescription": "test 2 variant"
+    },
+    {
+      "variantId": "1_2345_ATT_AT",
+      "variantType": "del",
+      "variantRegion": "intergenic",
+      "variantDescription": "test 3 variant"
+    },
+    {
+      "variantId": "6_345345_AAAA_AAAAT",
+      "variantType": "ins",
+      "variantRegion": "intergenic",
+      "variantDescription": "test 4 variant"
+    },
+    {
+      "variantId": "7_34769_G_T",
+      "variantType": "snp",
+      "variantRegion": "intergenic",
+      "variantDescription": "test 5 variant"
+    },
+    {
+      "variantId": "8_2345_GA_G",
+      "variantType": "del",
+      "variantRegion": "intergenic",
+      "variantDescription": "test 6 variant"
+    }
+  ]
+}

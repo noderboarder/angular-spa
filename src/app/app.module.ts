@@ -39,6 +39,8 @@ import { ParamsforseqsComponent } from './paramsforseqs/paramsforseqs.component'
 import { NavigationComponent } from './navigation/navigation.component';
 import { ObservableComponent } from './observable/observable.component'; // first to do: import module
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,7 +81,8 @@ import { ObservableComponent } from './observable/observable.component'; // firs
     BrowserAnimationsModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    HttpClientModule
   ],
   providers: [
     // {provide: LocationStrategy, useClass: HashLocationStrategy}

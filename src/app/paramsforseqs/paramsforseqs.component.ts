@@ -9,7 +9,9 @@ import {SequencesService} from '../sequences.service';
 })
 export class ParamsforseqsComponent implements OnInit {
 
-  sequenceList = [];
+  // sequenceList = [];
+  // httpclient call
+  sequenceList: any;
 
   seqqueryparametersForm: FormGroup; // step 3: html의 formgroup name과 동일해야한다.
   siteName = 'ensembl';
@@ -89,7 +91,13 @@ export class ParamsforseqsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.sequenceList = this.sequencesService.getSequences();
+    // hard coded data
+    // this.sequenceList = this.sequencesService.getSequences();
+
+    // using httpclient module
+    this.sequencesService.getSequences().subscribe(data => {
+      this.sequenceList = data;
+    });
 
     // nested array 접근 (값, 길이, 세부항목)
     console.log(this.seqqueryparametersForm.get('variants').value);
