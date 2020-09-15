@@ -8,6 +8,7 @@ export class SequencesService {
 
   constructor(private httpClient: HttpClient) { }
 
+  // get call
   // tslint:disable-next-line:typedef
   getSequences(){
 
@@ -25,6 +26,14 @@ export class SequencesService {
     // ];
 
     return sequenceList;
+  }
+
+  // post call
+  // tslint:disable-next-line:typedef
+  createSequences(createVarInfoJson){
+    const httpHeaders = new HttpHeaders();
+    httpHeaders.append('content-type', 'application/json');
+    return this.httpClient.post('http://localhost:3000/variants', createVarInfoJson, {headers: httpHeaders});
   }
 
   // tslint:disable-next-line:typedef

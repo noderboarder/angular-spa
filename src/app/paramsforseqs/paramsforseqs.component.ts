@@ -13,6 +13,9 @@ export class ParamsforseqsComponent implements OnInit {
   // httpclient call
   sequenceList: any;
 
+  // post response initializing
+  responseTrue = false;
+
   seqqueryparametersForm: FormGroup; // step 3: html의 formgroup name과 동일해야한다.
   siteName = 'ensembl';
   startingPosCoord = 0;
@@ -183,6 +186,31 @@ export class ParamsforseqsComponent implements OnInit {
   resetForm(){
     this.seqqueryparametersForm.reset();
     this.defaultSet();
+  }
+
+  // tslint:disable-next-line:typedef
+  createNewVarInfo(formData){
+    // post call form mock data before testing dynamicFormData
+    const newFormData = {
+      id: 9,
+      variantId: '10_343453453_G_A',
+      variantType: 'snp',
+      variantRegion: 'downstream',
+      variantDescription: 'test snp'
+    };
+
+    const dynamicFormData = {
+      id: formData.value.id,
+      variantId: formData.value.variantId,
+      variantType: formData.value.variantType,
+      variantRegion: formData.value.variantRegion,
+      variantDescription: formData.value.variantDescription
+    };
+
+    this.sequencesService.createSequences(dynamicFormData).subscribe(data => {
+      console.log(data);
+      this.responseTrue = true;
+    });
   }
 
   // get variants(){
