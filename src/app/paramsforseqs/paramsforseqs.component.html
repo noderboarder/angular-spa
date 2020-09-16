@@ -108,12 +108,14 @@
       <div class="col-sm-10">
         <button type="submit" class="btn btn-primary" [disabled]="!seqqueryparametersForm.valid">Get Sequences</button>
         <button type="submit" class="btn btn-link" (click)="resetForm()">Reset</button>
+        <button (click)="updateVariant(3);">Update Variant Id: 3</button>
+        <button (click)="deleteVariant('4');">Delete Variant Id: 4</button>
+        <button (click)="getVariant();">get Variant by type: 'snp'</button>
 <!--        <button type="submit" class="btn btn-link" (click)="addNewVariant()">New Variant</button>-->
       </div>
     </div>
   </form>
 </div>
-
 <div>
   Retrieving sequences coordination: {{ startingPosCoord }} - {{ endingPosCoord }}
 </div>

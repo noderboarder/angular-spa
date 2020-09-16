@@ -213,6 +213,38 @@ export class ParamsforseqsComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line:typedef
+  updateVariant(variantId){
+    const newFormData = {
+      id: 3,
+      variantId: '3_343453453_G_A',
+      variantType: 'put',
+      variantRegion: 'downstream',
+      variantDescription: 'test update put method'
+    };
+
+    this.sequencesService.updateSequences(variantId, newFormData).subscribe(data => {
+      this.responseTrue = true;
+    });
+
+  }
+
+  // tslint:disable-next-line:typedef
+  deleteVariant(variantId){
+    console.log(variantId);
+    this.sequencesService.deleteSequence(variantId).subscribe(data => {
+      console.log(data);
+      this.responseTrue = true;
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  getVariant(){
+    this.sequencesService.getSequenceById().subscribe(data => {
+      console.log(data);
+    });
+  }
+
   // get variants(){
   //   return this.seqqueryparametersForm.get('variants') as FormArray;
   // }

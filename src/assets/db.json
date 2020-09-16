@@ -1,56 +1,56 @@
 {
   "variants": [
     {
-      "id": "1",
+      "id": 1,
       "variantId": "3_345345_A_AT",
       "variantType": "ins",
       "variantRegion": "intergenic",
       "variantDescription": "test 1 variant"
     },
     {
-      "id": "2",
+      "id": 2,
       "variantId": "1_34769_A_T",
       "variantType": "snp",
       "variantRegion": "intergenic",
       "variantDescription": "test 2 variant"
     },
     {
-      "id": "3",
-      "variantId": "1_2345_ATT_AT",
-      "variantType": "del",
-      "variantRegion": "intergenic",
-      "variantDescription": "test 3 variant"
+      "id": 3,
+      "variantId": "3_343453453_G_A",
+      "variantType": "put",
+      "variantRegion": "downstream",
+      "variantDescription": "test update put method"
     },
     {
-      "id": "4",
+      "id": 4,
       "variantId": "6_345345_AAAA_AAAAT",
       "variantType": "ins",
       "variantRegion": "intergenic",
       "variantDescription": "test 4 variant"
     },
     {
-      "id": "5",
+      "id": 5,
       "variantId": "7_34769_G_T",
       "variantType": "snp",
       "variantRegion": "intergenic",
       "variantDescription": "test 5 variant"
     },
     {
-      "id": "6",
+      "id": 6,
       "variantId": "8_2345_GA_G",
       "variantType": "del",
       "variantRegion": "intergenic",
       "variantDescription": "test 6 variant"
     },
     {
-      "id": "002v4R1",
+      "id": 7,
       "variantId": "7_34564455_T_G",
       "variantType": "snp",
       "variantRegion": "upstream",
       "variantDescription": "test postman variant"
     },
     {
-      "id": "8",
+      "id": 8,
       "variantId": "9_34563455_T_G",
       "variantType": "snp",
       "variantRegion": "upstream",
@@ -64,21 +64,21 @@
       "variantDescription": "test snp"
     },
     {
-      "id": "10",
+      "id": 10,
       "variantId": "11_33242342_T_A",
       "variantType": "11_33242342_T_A",
       "variantRegion": "intron",
       "variantDescription": "dynamic form data test"
     },
     {
-      "id": "13",
+      "id": 13,
       "variantId": "12_45634668678_TTT_T",
       "variantType": "del",
       "variantRegion": "intro",
       "variantDescription": "dynamic form data header added"
     },
     {
-      "id": "14",
+      "id": 14,
       "variantId": "13_67867967_TTA_TTAGGA",
       "variantType": "ins",
       "variantRegion": "5'-prime region",
