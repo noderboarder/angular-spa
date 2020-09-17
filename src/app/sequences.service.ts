@@ -12,8 +12,13 @@ export class SequencesService {
   // tslint:disable-next-line:typedef
   getSequences(){
 
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.append('content-type', 'application/json');
+    // const httpHeaders = new HttpHeaders();
+    // httpHeaders.append('content-type', 'application/json');
+    const httpHeaders = new HttpHeaders({
+      'content-type': 'application/json',
+      Authorization: 'ThisisgoodConvention for custom header',
+      timeOutSeconds: '3000'
+    });
 
     const sequenceList = this.httpClient.get('http://localhost:3000/variants', {headers: httpHeaders});
 

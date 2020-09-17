@@ -39,7 +39,8 @@ import { ParamsforseqsComponent } from './paramsforseqs/paramsforseqs.component'
 import { NavigationComponent } from './navigation/navigation.component';
 import { ObservableComponent } from './observable/observable.component'; // first to do: import module
 
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {LoggerInterceptor} from './logger.interceptor';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers: [
     // {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: HTTP_INTERCEPTORS, useClass: LoggerInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
